@@ -1,0 +1,61 @@
+*{margin:0; padding:0; box-sizing: border-box; color:#464540;}
+html, body{background-color:#f6f5f0; height:100%; width:100%;}
+#containerMain{ border:solid 5px #d19a5a; height:100%; width:100%;}
+#containerCenter{width:1100px; margin:0 auto; margin-top:30px;}
+#containerImg{width:70px; margin:0 auto;}
+#containerImg img{width:100%;}
+#containerImgdown{width:140px; margin:0 auto; margin-top:15px; margin-bottom: 50px;}
+#containerImgdown img{width:100%;}
+form{width:100%; height:100%; display:flex;}
+form article{  }
+form #articleLeft{padding-right: 100px; font-family:fuenteandalina; width:45%;}
+form #articleLeft h1{font-size: 10px; margin-bottom:10px; color:#a46a40;}
+form #articleLeft p{font-size: 13px; font-family:helvetica;}
+form #articleLeft #divDown{margin-top:130px;}
+form #articleRight{width:55%;}
+form #articleRight p{display:inline-block; width:180px; font-family:fuenteandalina;  font-size:10px; margin-bottom:20px; margin-right:10px;border-bottom:solid 1px green; padding-bottom:3px;}
+form #articleRight input{border:none; width:200px; border-bottom:solid 1px green; padding-bottom:3px; background-color:transparent;}
+#imgupload{width:400px !important;}
+#text{all:initial; width:250px !important; font-family:helvetica !important; font-size:10px;  border:none !important;}
+#enviar{width:90px; height:30px; background-color:#a46a40; border:none; color:#fff; float:right; margin-right:70px; cursor:pointer;}
+
+
+.container{
+  margin: 25px auto;
+  width: 1024px;
+}
+#imgpreview{
+margin-bottom: 50px;
+}
+.imgClass{
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+#cargando{
+  display: none;
+}
+
+input::-webkit-input-placeholder{
+  font-family:fuenteandalina; font-size: 10px;
+}
+input:-moz-placeholder {
+  font-family:fuenteandalina; font-size: 10px;
+}
+input:-ms-input-placeholder {
+  font-family:fuenteandalina; font-size: 10px;
+}
+
+
+@media screen and (min-width: 1450px) {
+
+  input::-webkit-input-placeholder {
+    font-family:fuenteandalina; font-size: 7px;
+  }
+  input:-moz-placeholder {
+    font-family:fuenteandalina; font-size: 7px;
+  }
+  input:-ms-input-placeholder {
+    font-family:fuenteandalina; font-size: 7px;
+  }
+}

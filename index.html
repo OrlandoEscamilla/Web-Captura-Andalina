@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Formulario Central Andalina</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="img/fav.png"/>
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+
+<link rel="stylesheet" type="text/css" href="css/fuentes.css">
+</head>
+<body>
+
+<div style="width: 300px;   opacity: 0.8; z-index: 1111111111111111111111111111; position:fixed; top:50%; left:50%; transform: translate(-50% , -50%);" id="cargando">
+	<img style=" width: 100%; " src="img/enviando.gif">
+</div>
+
+<div id="containerMain">
+	<div id="containerCenter">
+
+
+	<div id="containerImg" class="animated fadeIn">
+			<img src="img/icono.png">
+	</div>
+	<div id="containerImgdown">
+			<img src="img/logo.png">
+	</div>
+
+	<form action="enviar.php" method="post" enctype="multipart/form-data">
+
+		<article id="articleLeft">
+			<h1>ESTIMADO PLANNER:</h1>
+				<p>Gracias por formar parte de nuestra comunidad, te invitamos a llenar
+				este formulario con algunos detalles de tu exitoso evento. Recuerda que el
+			  objetivo de esto es mostrar el trabajo de todos los involucrados, por lo cual es importante
+		    que incluyas los mejores ejemplos.</p>
+
+				<div id="divDown">
+						<p>Central Andalina</p>
+						<p>contacto@centralandalina.com</p>
+						<p>(833) 217 6315</p>
+				</div>
+		</article>
+
+		<article id="articleRight">
+			 <p>EVENTO: </p> <input type="text" id="campo1" name="evento" placeholder="NOMBRE DEL EVENTO" required>
+			<br>
+			<p>FECHA DEL EVENTO: </p> <input type="date" id="campo2" name="fecha" placeholder="FECHA DEL EVENTO" required>
+			<br>
+			<p>WEDDING DEL PLANNER: </p> <input type="text" id="campo3" name="weddingf" placeholder="USUARIO DE FACEBOOK" required> <input type="text" id="campo4" name="weddingi" value="" placeholder="USUARIO DE INSTAGRAM" required>
+			<br>
+			<p>DECORACIÓN: </p> <input type="text" id="campo5" name="decoracionf" placeholder="USUARIO DE FACEBOOK" required> <input type="text" id="campo6" name="decoracioni" value="" placeholder="USUARIO DE INSTAGRAM" required>
+			<br>
+			<p>MÚSICA: </p> <input type="text" id="campo7" name="musicaf" placeholder="USUARIO DE FACEBOOK" required> <input type="text" id="campo8" name="musicai" value="" placeholder="USUARIO DE INSTAGRAM" required>
+			<br>
+			<p>FOTOS: </p> <!--<input id="adjuntar" type="file" class="form-control" id="archivo[]" name="archivo[]" multiple="" placeholder="nndsd" required> -->
+			<input type="file" name="archivo[]" id="imgupload" multiple="multiple" placeholder="Fotografias" required>
+			<br>
+			<button id="enviar" onclick="verificar();" type="submit" class="btn btn-primary">ENVIAR</button>
+			<p id="text">Te recomendamos que adjuntes las fotografias realizadas por el fotografo de este evento.
+			(Oprima examinar y con la tecla ctrl presionada seleccione sus fotografias a cargar). Considera incluir maximo 10 fotografias que no superen los 60mb.
+			Formato admitidos JPG, PNG, PDF</p>
+			<div id="imgpreview">Sus archivos a cargar...</div>
+		</article>
+
+	</form>
+	</div>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+
+	function verificar(){
+
+
+	valor1 = document.getElementById("campo1").value;
+	valor2 = document.getElementById("campo2").value;
+	valor3 = document.getElementById("campo3").value;
+	valor4 = document.getElementById("campo4").value;
+	valor5 = document.getElementById("campo5").value;
+	valor6 = document.getElementById("campo6").value;
+	valor7 = document.getElementById("campo7").value;
+	valor8 = document.getElementById("campo8").value;
+	valor9 = document.getElementById("imgupload").value;
+
+
+	if( valor1 != "" && valor2 != "" && valor3 != "" && valor4 != "" && valor5 != "" && valor6 != "" && valor7 != "" && valor8 != "" && valor9 != ""){
+
+		document.getElementById("cargando").style.display = "block";
+	}
+
+
+}
+
+
+
+	$(document).ready(function(){
+
+		$("#imgupload").on("change", function(){
+			var imgItem = $(this)[0].files;
+			var imgCount = $(this)[0].files.length;
+			var imgPath = $(this)[0].value;
+			var imgExt = imgPath.substring(imgPath.lastIndexOf('.')+1).toLowerCase();
+
+			var imgPreview = $('#imgpreview');
+			imgPreview.empty();
+
+			if (imgExt == "gif" || imgExt == "png" || imgExt == "jpg" || imgExt == "jpeg" || imgExt == "bmp" || imgExt == "pdf") {
+
+				if (typeof(FileReader) != "undefined"){
+					for (var i = 0; i < imgCount; i++) {
+						var reader = new FileReader();
+							reader.onload = function(e){
+								$("#imgpreview").css({"height":"auto","width":"100%"});
+								var altura_viewport = $("#containerMain").height();
+								var altura_contenedor = document.getElementById('containerCenter').offsetHeight;
+
+
+								if(altura_contenedor > altura_viewport){
+									$("#containerMain").css({"height":"auto"});
+								}
+								if (imgExt == "pdf"){
+									$("<img/>",{
+										"src": "img/pdf.png",
+										"width":"80",
+										"class": "imgClass"
+									}).appendTo(imgPreview);
+									imgExt = "";
+								}
+								else{
+									$("<img/>",{
+										"src": e.target.result,
+										"width":"80",
+										"class": "imgClass"
+									}).appendTo(imgPreview);
+									imgExt = "";
+								}
+
+							}
+							imgPreview.show();
+							reader.readAsDataURL($(this)[0].files[i]);
+					}
+				}else{
+					imgPreview.html("Browser initidak mensdukung FileReader");
+				}
+			}else{
+				imgPreview.html("File harus formal gamber");
+			}
+
+
+		});
+
+
+
+	});
+
+
+</script>
+
+
+
+</body>
+</html>
